@@ -8,7 +8,7 @@ bp = Blueprint("main", __name__)
 
 @bp.get("/")
 def index():
-    return sukses(message="Selamat Datang di API EMBEGEH")
+    return sukses(message="Selamat Datang di API JagaPawana")
 
 # Iseng untuk cek koneksi ke database
 @bp.get("/db-check")
