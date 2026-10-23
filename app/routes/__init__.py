@@ -5,8 +5,8 @@ from app.routes.sppg import bp as sppg_bp
 from app.routes.menu import bp as menu_bp
 from app.routes.produksi import bp as produksi_bp
 from app.routes.data_keracunan import bp as keracunan_bp
-
+from app.routes.hotspot import hotspot_bp
 
 def register_routes(app):
-    for bp in (main_bp, auth_bp, sekolah_bp, sppg_bp, menu_bp, produksi_bp, keracunan_bp):
+    for bp in (main_bp, auth_bp, sekolah_bp, sppg_bp, menu_bp, produksi_bp, keracunan_bp, hotspot_bp):
         app.register_blueprint(bp)
