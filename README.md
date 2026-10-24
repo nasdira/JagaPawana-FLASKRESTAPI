@@ -3,7 +3,7 @@
 REST API backend untuk pemantauan titik hotspot kebakaran hutan dan kualitas udara (AQI) di Kalimantan.
 
 ## Link Deployment Vercel
-https://jaga-pawana-flaskrestapi-9aisercmt-indirabe.vercel.app/
+https://jaga-pawana-flaskrestapi.vercel.app/
 	
 ## Skema Database (ERD)
 Terdiri dari 6 tabel berelasi:
