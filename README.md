@@ -1,36 +1,48 @@
-# JagaPawana REST API - Sistem Pemantauan Karhutla & AQI Kalimantan
+# 🌲 JagaPawana REST API - Sistem Pemantauan Karhutla & AQI Kalimantan
 
-REST API backend untuk pemantauan titik hotspot kebakaran hutan dan kualitas udara (AQI) di Kalimantan.
+JagaPawana adalah layanan REST API backend berbasis Flask yang dirancang untuk memantau titik *hotspot* kebakaran hutan dan lahan (karhutla) serta kualitas udara (AQI) di wilayah Kalimantan secara *real-time*.
 
-## Link Deployment Vercel
-https://jaga-pawana-flaskrestapi.vercel.app/
-	
-## Skema Database (ERD)
-Terdiri dari 6 tabel berelasi:
-- `wilayah` (Master Data Wilayah)
-- `sensor_kualitas_udara` (Relasi ke Wilayah)
-- `kualitas_udara` (Histori AQI)
-- `titik_hotspot` (Data Kebakaran Hutan)
-- `laporan_warga` (Laporan Masarakat)
-- `penanganan_kebakaran` (Log Tim Respon)
+---
 
-## Daftar Endpoint API
-### 1. Get All Hotspots
-- **Method**: GET
-- **URL**: `https://jaga-pawana-flaskrestapi-9aisercmt-indirabe.vercel.app/hotspot`
-- **Description**: Mengambil seluruh daftar titik hotspot karhutla beserta nama wilayah.
-- **Response Success (200 OK)**:
+## 🚀 Link Deployment Vercel
+- **Base URL**: `https://jaga-pawana-flaskrestapi.vercel.app`
+- **Main Endpoint (Hotspot)**: `https://jaga-pawana-flaskrestapi.vercel.app/hotspot`
+
+---
+
+## 🗄️ Skema Database (ERD)
+Database PostgreSQL di Supabase terdiri dari **6 tabel berelasi** menggunakan *foreign key*:
+1. **`wilayah`** (Master data kabupaten/kota lokasi pemantauan)
+2. **`sensor_kualitas_udara`** (Data perangkat sensor AQI per wilayah)
+3. **`kualitas_udara`** (Histori indeks kualitas udara/PM2.5)
+4. **`titik_hotspot`** (Data lokasi karhutla, suhu permukaan, & tingkat kepercayaan)
+5. **`laporan_warga`** (Data kejadian karhutla yang dilaporkan masyarakat)
+6. **`penanganan_kebakaran`** (Log tindakan & status pemadaman oleh tim respon)
+
+**Relasi:**
+`wilayah` ──< `titik_hotspot` ──< `penanganan_kebakaran`  
+`wilayah` ──< `sensor_kualitas_udara` ──< `kualitas_udara`  
+`wilayah` ──< `laporan_warga`
+
+---
+
+## 📡 Dokumentasi Pemanggilan API
+
+### 1. Health Check / Root Index
+- **Method**       : `GET`
+- **URL**          : `https://jaga-pawana-flaskrestapi.vercel.app/`
+- **Deskripsi**    : Mengecek status aktif aplikasi backend.
+- **Headers**      : `Content-Type: application/json`
+- **Request Body** : (Tidak ada)
+- **Response Sukses (200 OK)**:
   ```json
   {
     "status": "success",
-    "data": [
-      {
-        "id_hotspot": 1,
-        "id_wilayah": 1,
-        "nama_wilayah": "Palangkaraya",
-        "suhu_permukaan": 52.8,
-        "tingkat_kepercayaan": 95,
-        "status_api": "Proses Pemadaman"
-      }
-    ]
+    "message": "Selamat datang di REST API JagaPawana - Sistem Pemantauan Karhutla & AQI Kalimantan"
+  }
+
+  ```json
+  {
+    "status": "error",
+    "message": "Terjadi kesalahan pada server"
   }
