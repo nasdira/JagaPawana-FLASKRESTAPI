@@ -1,4 +1,3 @@
-
 # JagaPawana REST API - Sistem Pemantauan Karhutla & AQI Kalimantan
 
 REST API backend untuk pemantauan titik hotspot kebakaran hutan dan kualitas udara (AQI) di Kalimantan.
